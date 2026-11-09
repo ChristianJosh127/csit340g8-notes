@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import NoteCard from './NoteCard.jsx'
 
@@ -134,6 +135,10 @@ function Notes() {
             )
           })}
         </ul>
+
+        {notes.length === 0 && (
+          <p className="text-lg text-[#949494]">No notes found</p>
+        )}
       </section>
     </div>
   )
