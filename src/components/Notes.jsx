@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import NoteCard from './NoteCard.jsx'
 
@@ -20,9 +21,16 @@ function Notes() {
     return saved ? JSON.parse(saved) : startingNotes
   })
 
-  const [formData, setFormData] = useState({
-    title: '',
-    body: '',
+  
+  const [formData, setFormData] = useState(() => {
+    const savedDraft = localStorage.getItem('draft')
+
+    return savedDraft
+      ? JSON.parse(savedDraft)
+      : {
+          title: '',
+          body: '',
+        }
   })
 
   const [searchTerm, setSearchTerm] = useState('')
