@@ -32,6 +32,14 @@ function Notes() {
     localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes])
 
+  useEffect(() => {
+    const id = setTimeout(() => {
+      localStorage.setItem('draft', JSON.stringify(formData))
+    }, 1000)
+
+    return () => clearTimeout(id)
+  }, [formData])
+
   function handleChange(event) {
     const name = event.target.name
     const value = event.target.value
@@ -99,7 +107,7 @@ function Notes() {
             onChange={function (event) {
               setSearchTerm(event.target.value)
             }}
-            className="h-[52px] w-full border border-[#e6e6e6] px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
+            className="h-[52px] w-full border border-[#e6e6e6 px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
           />
         </div>
 
@@ -112,14 +120,14 @@ function Notes() {
             placeholder="Title"
             value={formData.title}
             onChange={handleChange}
-            className="h-[52px] w-full border border-[#e6e6e6] px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
+            className="h-[52px] w-full border border-[#e6e6e6 px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
           />
           <textarea
             name="body"
             placeholder="Write your note"
             value={formData.body}
             onChange={handleChange}
-            className="h-[120px] w-full resize-none py-3 border border-[#e6e6e6] px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
+            className="h-[120px] w-full resize-none py-3 border border-[#e6e6e6 px-4 text-lg outline-none placeholder:text-black/40 placeholder:italic focus:border-[#cf7d7d]"
           />
           <button
             type="submit"
